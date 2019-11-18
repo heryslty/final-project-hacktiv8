@@ -13,21 +13,21 @@ Password : lalala11
 ```
 
 ## Home Page
-Users may see this by the first time they landing to this website. Users may click "See more arciles..." to load more articles.
+Users will see this by the first time they landing to this website. Users may click "See more arciles..." to load more articles.
 ![Repo List](screenshots/home.JPG)
 
 ## About Page
-Users may see this when they click developer's name on the bottom of the web page.
+Users will see this when they click developer's name on the bottom of the web page.
 ![Repo List](screenshots/about.JPG)
 
 ## Contact Page
-Users may see this when they click "Contact Us" link on the top-left of the web page. Some fields are required.
+Users will see this when they click "Contact Us" link on the top-left of the web page. Some fields are required.
 ![Repo List](screenshots/contact.JPG)
 
 ## Sign In Page
-Users may see this when they click "Sign In" link on the top-right of the web page. They may see "Manage Articles" & "See Feedback" after they signed-in successfully.
+Users will see this when they click "Sign In" link on the top-right of the web page. They may see "Manage Articles" & "See Feedback" after they signed-in successfully.
 ![Repo List](screenshots/sign-in.JPG)
 
 ## Manage Articles Page
-Users may see this when they click "Manage Articles" link on the top-left of the web page. They may create new, update, delete, publsh or unpublish selected articles.
+Users will see this when they click "Manage Articles" link on the top-left of the web page. They may create new, update, delete, publsh or unpublish selected articles.
 ![Repo List](screenshots/manage-articles.JPG)
