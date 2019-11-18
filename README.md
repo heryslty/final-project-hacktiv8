@@ -9,7 +9,7 @@ You have to GIT Clone -> Install DB -> go mod tidy before running this web servi
 ## Sign-In Web Page
 ```Sign-In Web Page
 Email : djodi.ramadhan@gmail.com
-Password : **********
+Password : lalala11
 ```
 
 ## Home Page
