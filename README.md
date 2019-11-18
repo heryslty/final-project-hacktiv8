@@ -1,5 +1,7 @@
 # go-final-project
-This project exists to complete the final assignment in Go Class at Hacktiv8
+This project exists to complete the final assignment in Go Class at Hacktiv8. 
+Administrator Login : djodi.ramadhan@gmail.complete
+Password : lalala11
 
 <b>Home Page</b>
 ![Repo List](screenshots/home.JPG)
