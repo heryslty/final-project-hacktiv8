@@ -1,0 +1,42 @@
+{{define "detail"}}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    {{template "_header"}}
+    <style type="text/css">
+    .jumbotron{ 
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{.Image}});
+        min-height: 350px;
+        background-position: top;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        {{template "_navigation"}}
+
+        <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark" style="display:flex;align-items:flex-end;">
+            <div class="col-md-12 px-0">
+                <h1 class="display-4">{{.Title}}</h1>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-12">
+                {{.Content}}
+            </div>
+
+            {{template "_footer"}}
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/authentication.js"></script>
+</body>
+
+</html>
+
+{{end}}

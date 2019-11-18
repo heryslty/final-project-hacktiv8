@@ -1,0 +1,98 @@
+{{define "contact"}}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    {{template "_header"}}
+</head>
+
+<body>
+    <div class="container">
+        {{template "_navigation"}}
+
+        <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark" style="display:flex;align-items:flex-end;">
+            <div class="col-md-6 px-0">
+                <h1 class="display-4">Contact</h1>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <div id="alert" class="alert alert-danger" role="alert" style="display:none;"></div>
+
+                <form id="post-feedback-form" action="/feedback" method="POST">
+                    <div class="row">
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="subject">Subject <span style="color:red;">*</span></label>
+                            <input name="subject" type="text" class="form-control" id="subject" placeholder="" value=""
+                                required="">
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="email">Email <span style="color:red;">*</span></label>
+                            <input name="email" type="text" class="form-control" id="sender" placeholder="" value=""
+                                required="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12 mb-3">
+                            <label for="text">Message <span style="color:red;">*</span></label>
+                            <textarea name="text" class="form-control" id="text" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12 mb-3">
+                            <button type="submit" class="btn btn-outline-secondary">Submit</button>
+                        </div>
+                    </div>
+                    <br />
+                </form>
+            </div>
+
+            {{template "_footer"}}
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/authentication.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#post-feedback-form").on("submit", function (e) {
+                e.preventDefault();
+
+                const $self = $(this);
+                const payload = JSON.stringify({
+                    sender: $('#post-feedback-form input[name="email"]').val(),
+                    subject: $('#post-feedback-form input[name="subject"]').val(),
+                    text: $('#post-feedback-form textarea[name="text"]').val(),
+                })
+
+                $('#alert').removeClass();
+                $('#alert').addClass('alert');
+                $('#alert').css('display', 'block');
+
+                $.ajax({
+                    url: $self.attr("action"),
+                    type: $self.attr("method"),
+                    data: payload,
+                    contentType: 'application/json',
+                }).then(function (res) {
+                    if (res.success) {
+                        $('#alert').addClass('alert-success')
+                    } else {
+                        $('#alert').addClass('alert-danger');
+                    }
+                    $('#alert').html(res.message);
+                }).catch(function (ex) {
+                    $('#alert').addClass('alert-danger');
+                    $('#alert').html(ex);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+{{end}}

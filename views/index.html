@@ -1,0 +1,118 @@
+{{define "index"}}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    {{template "_header"}}
+</head>
+
+<body>
+    <div class="container">
+        {{template "_navigation"}}
+
+        <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark" style="display:flex;align-items:flex-end;">
+            <div class="col-md-6 px-0">
+                <p class="lead my-3">“Life is more fun if you play games.” -Roald Dahl</p>
+            </div>
+        </div>
+
+        <div class="row mb-2" id="article-container">
+
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-12" style="display:flex;justify-content: center;">
+                <nav class="blog-pagination">
+                    <a class="btn btn-outline-secondary" href="#" id="see-more-button">See older articles...</a>
+                    <img id="loading" src="/loading.png" alt="Loading..." width="70px" height="70px"
+                        style="display:none;" />
+                </nav>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            {{template "_footer"}}
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/authentication.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            let countArticles = $('.articles').length;
+
+            $(document).on("ajaxStart.firstCall", function () {
+                $('#loading').show();
+                $('#see-more-button').hide();
+            });
+            
+            $(document).on("ajaxStop.firstCall", function () {
+                $('#loading').hide();
+                $('#see-more-button').show();
+            });
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+                    $('#see-more-button').css('display') != 'none' ? populateArticles() : false;
+                }
+            });
+
+            const populateArticles = () => {
+                $.ajax({
+                    url: '/published-articles',
+                    type: 'GET',
+                    contentType: 'application/json',
+                }).then(function (res) {
+                    let limit, offset;
+
+                    if (countArticles == 0) {
+                        offset = 0;
+                        limit = 1;
+                    }
+                    else {
+                        offset = countArticles;
+                        countArticles + 1 >= res.data.length ? limit = res.data.length - 1 : limit = countArticles + 1;
+                    }
+
+                    console.log(offset, limit);
+
+                    for (i = offset; i <= limit; i++) {
+                        const { content, created_at, id, image, thumbnail, title } = res.data[i];
+
+                        $('#article-container').append('<div class="col-md-6 articles">' +
+                            '<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">' +
+                            '<div class="col p-4 d-flex flex-column position-static">' +
+                            '<h5 class="mb-0">' + title + '</h5>' +
+                            '<div class="mb-1 text-muted">' + created_at + '</div>' +
+                            '<p class="mb-auto" style="">' + content.substr(0, 90) + '...</p>' +
+                            '<a href="/detail/' + id + '" class="stretched-link">Continue reading</a>' +
+                            '</div>' +
+                            '<div class="col-auto d-none d-lg-block" style="width:224px; height:228px;">' +
+                            '<img alt="' + title + '" data-src="' + thumbnail + '" src="' + thumbnail + '" lazy="loaded" />' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>');
+                    }
+
+                    countArticles = $('.articles').length;
+                    countArticles >= res.data.length ? $('#see-more-button').hide() : $('#see-more-button').show();
+                }).catch(function (ex) {
+                    $('#article-container').html(ex);
+                });
+            }
+
+            populateArticles();
+
+            $("#see-more-button").on("click", function (e) {
+                e.preventDefault();
+
+                populateArticles();
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+{{end}}

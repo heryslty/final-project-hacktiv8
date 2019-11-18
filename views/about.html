@@ -1,0 +1,49 @@
+{{define "about"}}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    {{template "_header"}}
+</head>
+
+<body>
+    <div class="container">
+        {{template "_navigation"}}
+
+        <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark" style="display:flex;align-items:flex-end;">
+            <div class="col-md-6 px-0">
+                <h1 class="display-4">About</h1>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <p style="text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac
+                    enim ut ante lobortis dapibus. Proin sodales ornare erat, at bibendum elit venenatis nec. Donec
+                    auctor justo sed quam auctor, ac eleifend tellus efficitur. Quisque ultricies metus quis auctor
+                    semper. In at sapien est. Sed bibendum lorem a convallis ullamcorper. Morbi ornare sem sem, ac
+                    euismod justo tempus eu. Donec placerat convallis erat sit amet commodo. Aenean egestas lacus in
+                    rhoncus egestas. </p>
+                <p style="text-align: justify;">Vestibulum ultrices mi a porttitor laoreet. Fusce convallis volutpat
+                    accumsan. Aliquam sodales sed sem vel dictum. Nullam tincidunt elementum cursus. Duis at ipsum
+                    lobortis dui sollicitudin dignissim ut vel ipsum. Integer scelerisque commodo odio, eget finibus
+                    quam aliquam vel. Ut pellentesque, massa vel euismod mollis, tellus nisi consectetur quam, a
+                    suscipit lacus metus in libero. Etiam faucibus mauris nec sagittis ultricies. Integer gravida
+                    ultricies enim, et vestibulum diam vulputate a. Curabitur ultricies aliquam tincidunt. Fusce
+                    facilisis aliquam lacinia. Curabitur euismod est justo, nec gravida nulla aliquet ac. Donec interdum
+                    erat nisi, sit amet interdum lorem fermentum sed. Nunc porta tincidunt laoreet. Vivamus id tempus
+                    turpis. </p>
+            </div>
+
+            {{template "_footer"}}
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/authentication.js"></script>
+</body>
+
+</html>
+
+{{end}}
