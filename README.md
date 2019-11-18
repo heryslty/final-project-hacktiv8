@@ -3,7 +3,7 @@
 This project exists to complete the final assignment in Go Class at Hacktiv8
 
 ```
-You have to GIT Clone -> Install DB before running this web service.
+You have to GIT Clone -> Install DB -> go mod tidy before running this web service.
 ```
 
 ## Sign-In Web Page
