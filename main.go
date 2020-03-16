@@ -609,7 +609,7 @@ func checkErr(w http.ResponseWriter, err error) {
 }
 
 func connectDB() (*sql.DB, error) {
-	db, err := sql.Open(DBDriver, DBUsername+":"+DBPassword+"@/"+DBName+"?charset=utf8")
+	db, err := sql.Open(DBDriver, DBUsername+":"+DBPassword+"@tcp(database-1.chghgvrwjatk.ap-southeast-1.rds.amazonaws.com)/"+DBName+"?charset=utf8")
 	if err != nil {
 		return nil, err
 	}
